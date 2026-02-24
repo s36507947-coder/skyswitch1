@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Local Remote</title>
+    <style>
+        body { background: #121212; color: white; font-family: sans-serif; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .btn { width: 150px; height: 150px; border-radius: 50%; border: none; font-size: 24px; font-weight: bold; cursor: pointer; margin: 20px; transition: 0.2s; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .on { background: #2ecc71; color: white; }
+        .off { background: #e74c3c; color: white; }
+        .btn:active { transform: scale(0.9); box-shadow: none; }
+        h1 { font-weight: 100; color: #888; letter-spacing: 5px; }
+    </style>
+</head>
+<body>
+    <h1>REMOTE</h1>
+    <button class="btn on" onclick="send('1')">ON</button>
+    <button class="btn off" onclick="send('0')">OFF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script>
+        const socket = io(); // Automatically connects to the same IP
+        function send(cmd) {
+            socket.emit('ui_command', cmd);
+        }
+    </script>
+</body>
+</html>
